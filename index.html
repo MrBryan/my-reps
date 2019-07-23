@@ -162,9 +162,8 @@ layout: default
 
             <p>Knowing who these representatives are and contacting their offices directly is the most effective way to change how our government works.</p>
 
-            <p>Have an issue you care about? <strong>Find your rep and tell them!</strong></p>
+            <p>Click on your representative and "contact" to send an email, pre-filled with Open Media's suggested format.</p>
 
-            <p><a href='/about.html'>More about this project &raquo;</a></p>
         </div>
     </div>
     <div class='col-md-3 hidden-xs hidden-sm'>
@@ -281,7 +280,7 @@ layout: default
 
             <!-- Add your contact instructions here! -->
 
-            <p><strong>Contact <%= info.person.name %></strong></p>
+            <p><strong>Contact <%= info.person.name %> via email and tell them to vote against bill 254. </strong></p>
             <hr />
             <% if (info.phones){ %>
                 <% $.each(info.phones, function(i, phone){ %>
@@ -297,9 +296,10 @@ layout: default
             <% if (info.emails){ %>
                 <% $.each(info.emails, function(i, email){ %>
                     <% if ((i + 1) < info.emails.length){ %>
-                        <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>'><%= email %></a><br />
+                        <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>?subject=Stop%20Copyright%20Extensions&body=I%20demand%20you%20put%20a%20stop%20to%20proposed%20copyright%20extensions.%0A%0ACopyright%20that%20extends%20decades%20after%20the%20original%20author%20is%20deceased%20is%20already%20excessive%20and%20prevents%20works%20from%20entering%20the%20public%20domain%20where%20it%20can%20fuel%20new%2C%20useful%20creations.%0A%0AI%20demand%20that%20you%20vote%20against%20bill%20254.%0A%0ASigned%2C%0A%0A'><%= email 
+                        %></a><br />
                     <% } else { %>
-                        <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>'><%= email %></a>
+                        <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>?subject=Stop%20Copyright%20Extensions&body=I%20demand%20you%20put%20a%20stop%20to%20proposed%20copyright%20extensions.%0A%0ACopyright%20that%20extends%20decades%20after%20the%20original%20author%20is%20deceased%20is%20already%20excessive%20and%20prevents%20works%20from%20entering%20the%20public%20domain%20where%20it%20can%20fuel%20new%2C%20useful%20creations.%0A%0AI%20demand%20that%20you%20vote%20against%20bill%20254.%0A%0ASigned%2C%0A%0A'><%= email %></a>
                     <% } %>
                 <% }) %>
             <% } %>
