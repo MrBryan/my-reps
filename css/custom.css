@@ -77,3 +77,29 @@ h1 a, h1 a:hover {
 #results-nav span {
     padding-right: 20px;
 }
+
+/* hack adjustments to remove scrolling issue on mobile screens esp iframe */
+@media screen and (max-width: 400px) {
+    table,tbody,thead, table, tr,td {
+        display:block !important;
+    }
+    table tr {
+        clear:both;
+        width:100%;
+        position: relative;
+        border-bottom: 10px black solid;
+        padding-bottom: 20px;
+    }
+    
+    table tr:after {
+        display: block;
+    content: "";
+    clear: both;
+    }
+    table td {
+    float: left;
+    width: 50%;
+    }
+    
+   
+}
