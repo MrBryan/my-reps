@@ -70,6 +70,20 @@ function addressSearch() {
     var address = $('#address').val();
     $.address.parameter('address', encodeURIComponent(address));
 
+    
+      var jqxhr = $.get('https://maps.googleapis.com/maps/api/staticmap?&key=AIzaSyBn2KgzwkfQwPCTT5aDNQXAcYW7QCsTqEs&size=600x200&maptype=roadmap&markers=" + encodeURIComponent(address)', function() {
+ 
+})
+  .done(function() {
+    
+    $("#address-image").html("<img class='img-responsive img-thumbnail' src='https://maps.googleapis.com/maps/api/staticmap?&key=AIzaSyBn2KgzwkfQwPCTT5aDNQXAcYW7QCsTqEs&size=600x200&maptype=roadmap&markers=" + encodeURIComponent(address) + "' alt='" + address + "' title='" + address + "' />");
+    
+    $("#address-image").show();
+  })
+  .fail(function() {
+    alert( "could not get map of address" );
+  });
+    
     var params = {
         'key': API_KEY,
         'address': address
@@ -97,6 +111,7 @@ function addressSearch() {
 
         if (divisions === undefined) {
             $("#no-response-container").show();
+            alert("rror!");
             $("#response-container").hide();
         }
         else {
@@ -172,8 +187,9 @@ function addressSearch() {
                 }
             });
 
-            $("#address-image").html("<img class='img-responsive img-thumbnail' src='https://maps.googleapis.com/maps/api/staticmap?&key=AIzaSyBn2KgzwkfQwPCTT5aDNQXAcYW7QCsTqEs&size=600x200&maptype=roadmap&markers=" + encodeURIComponent(address) + "' alt='" + address + "' title='" + address + "' />");
-
+          
+            
+            
             var template = new EJS({'text': $('#tableGuts').html()});
             
             if (show_federal) {
@@ -181,7 +197,7 @@ function addressSearch() {
                 $('#fed-nav').show();
                 $('#federal-results tbody').append(template.render({people: federal_people}));
             } else {
-                $('#federal-container').hide()
+                $('#federal-container').hide();
                 $('#fed-nav').hide();
             }
 
@@ -192,7 +208,7 @@ function addressSearch() {
                     $('#state-container').hide();
                 $('#state-results tbody').append(template.render({people: state_people}));
             } else {
-                $('#state-container').hide()
+                $('#state-container').hide();
                 $('#state-nav').hide();
             }                
 
@@ -211,7 +227,7 @@ function addressSearch() {
 
                 $('#county-results tbody').append(template.render({people: county_people}));
             } else {
-                $('#county-container').hide()
+                $('#county-container').hide();
                 $('#county-nav').hide();
             }  
 
@@ -229,7 +245,7 @@ function addressSearch() {
                 }
                 $('#local-results tbody').append(template.render({people: local_people}));   
             } else {
-                $('#local-container').hide()
+                $('#local-container').hide();
                 $('#local-nav').hide();
             }
 
@@ -246,7 +262,16 @@ function addressSearch() {
                 $('#contactModal').modal('show');
             })
         }
-    });
+    })
+    
+    .fail(function( jqxhr, textStatus, error ) {
+                  $("#no-response-container").show();
+                  $("#address-image").show();
+
+});
+    
+    
+    
 }
 
 function findMe() {
